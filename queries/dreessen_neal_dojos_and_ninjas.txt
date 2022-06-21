@@ -1,0 +1,88 @@
+USE dojos_and_ninjas_schema;
+
+-- Create 3 new dojos
+
+INSERT INTO dojos
+(name, created_at, updated_at)
+VALUES ('Crestone, CO', NOW(), NOW());
+
+INSERT INTO dojos
+(name, created_at, updated_at)
+VALUES ('Ojai, CA', NOW(), NOW());
+
+INSERT INTO dojos
+(name, created_at, updated_at)
+VALUES ('Rochester, NY', NOW(), NOW());
+
+SELECT * FROM dojos;
+
+-- Delete those 3 dojos
+
+DELETE FROM dojos
+WHERE id
+BETWEEN 1 AND 3;
+
+-- Create 3 more dojos
+
+INSERT INTO dojos
+(name, created_at, updated_at)
+VALUES ('Bellevue, WA', NOW(), NOW());
+
+INSERT INTO dojos
+(name, created_at, updated_at)
+VALUES ('Los Angeles, CA', NOW(), NOW());
+
+INSERT INTO dojos
+(name, created_at, updated_at)
+VALUES ('Silicon Valley, CA', NOW(), NOW());
+
+SELECT * FROM ninjas;
+
+-- Create 3 ninjas in the first dojo
+
+INSERT INTO ninjas
+(first_name, last_name, age, created_at, updated_at, dojo_id)
+VALUES ('Neal', 'Dreessen', 54, NOW(), NOW(), 4);
+
+INSERT INTO ninjas
+(first_name, last_name, age, created_at, updated_at, dojo_id)
+VALUES ('Manuel', 'Neuer', 36, NOW(), NOW(), 4);
+
+INSERT INTO ninjas
+(first_name, last_name, age, created_at, updated_at, dojo_id)
+VALUES ('Thomas', 'Muller', 32, NOW(), NOW(), 4);
+
+-- Create 3 ninjas into the second dojo
+
+INSERT INTO ninjas
+(first_name, last_name, age, created_at, updated_at, dojo_id)
+VALUES ('Franck', 'Ribery', 39, NOW(), NOW(), 5),('Arjen', 'Robben', 39, NOW(), NOW(), 5),('Phiipp', 'Lahm', 38, NOW(), NOW(), 5);
+
+-- Create 3 ninjas into the third dojo
+
+INSERT INTO ninjas
+(first_name, last_name, age, created_at, updated_at, dojo_id)
+VALUES ('Kingsley', 'Coman', 26, NOW(), NOW(), 6),('Leroy', 'Sane', 26, NOW(), NOW(), 6),('Leon', 'Goretzka', 27, NOW(), NOW(), 6);
+
+-- All ninjas from first dojo
+
+SELECT dojos.name AS dojo, ninjas.first_name AS first, ninjas.last_name AS last
+FROM dojos
+JOIN ninjas ON dojos.id = ninjas.dojo_id
+WHERE dojos.id = 4;
+
+-- All ninjas from last dojo
+
+SELECT dojos.name AS dojo, ninjas.first_name AS first, ninjas.last_name AS last
+FROM dojos
+JOIN ninjas ON dojos.id = ninjas.dojo_id
+WHERE dojos.id = 6;
+
+-- Get last ninjas dojo
+
+SELECT dojos.name AS dojo_name, ninjas.first_name AS first, ninjas.last_name AS last
+FROM dojos
+JOIN ninjas ON dojos.id = ninjas.dojo_id
+WHERE ninjas.id = 11;
+
+
