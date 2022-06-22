@@ -46,7 +46,7 @@ ON users2.id = friendships.friend_id;
 -- NINJA Query: Return all the users who are friends with the first user, make sure to display the names
 
 SELECT CONCAT_WS(' ', users.first_name, users.last_name) AS user_name, 
-GROUP_CONCAT(' ', users2.first_name, ' ', users2.last_name) AS friend_name
+GROUP_CONCAT(' ', users2.first_name, ' ', users2.last_name ORDER BY users2.first_name) AS friend_name
 FROM users
 JOIN friendships
 ON users.id = friendships.user_id AND users.id = 1
@@ -75,11 +75,10 @@ LIMIT 1;
 -- NINJA Query: Return the friends of the third user in alphabetical order
 
 SELECT CONCAT_WS(' ', users.first_name, users.last_name) AS user_name, 
-CONCAT_WS(' ', users2.first_name, users2.last_name) AS friends_name
+GROUP_CONCAT(' ', users2.first_name, ' ', users2.last_name ORDER BY users2.first_name) AS friend_name
 FROM users
 JOIN friendships
 ON users.id = friendships.user_id AND users.id = 3
 JOIN users AS users2
-ON users2.id = friendships.friend_id
-ORDER BY friends_name;
+ON users2.id = friendships.friend_id;
 
