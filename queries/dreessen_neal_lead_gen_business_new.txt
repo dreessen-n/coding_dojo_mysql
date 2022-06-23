@@ -18,3 +18,18 @@ FROM clients
 RIGHT JOIN sites ON clients.client_id = sites.client_id
 WHERE clients.client_id = 10;
 
+/* 4. What query would you run to get total # of sites created per month per year for the client with an id of 1? What about for client with an id of 20? */
+
+SELECT clients.client_id, clients.first_name, clients.last_name, 
+sites.domain_name, sites.created_datetime
+FROM clients
+RIGHT JOIN sites ON clients.client_id = sites.client_id
+WHERE clients.client_id = 1;
+
+SELECT clients.client_id, clients.first_name, clients.last_name, 
+sites.domain_name, sites.created_datetime
+FROM clients
+RIGHT JOIN sites ON clients.client_id = sites.client_id
+WHERE clients.client_id = 20;
+
+
