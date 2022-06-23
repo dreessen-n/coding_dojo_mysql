@@ -12,3 +12,9 @@ WHERE billing.client_id = 2;
 
 /* 3. What query would you run to get all the sites that client with an id of 10 owns? */
 
+SELECT clients.client_id, clients.first_name, clients.last_name, 
+sites.domain_name
+FROM clients
+RIGHT JOIN sites ON clients.client_id = sites.client_id
+WHERE clients.client_id = 10;
+
